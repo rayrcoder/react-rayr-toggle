@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import rayrEmitter from './RayrEmitter';
+import {EventEmitter} from 'events';
+
+const rayrEmitter = new EventEmitter();
 
 function getStyleFn(ele, attr) {
     return window.getComputedStyle(ele, null)[attr];
