@@ -41,6 +41,11 @@ class RayrToggle extends React.Component {
             }
         }, false);
 
+        this.oBox.addEventListener('click', (e) => {
+            e.stopPropagation();
+            rayrEmitter.emit('click.rayr.hide.all');
+        }, false);
+
         this.refs.rayrToggle.addEventListener('click', (e) => {
             e.stopPropagation();
         }, false);
@@ -61,5 +66,35 @@ class RayrToggle extends React.Component {
         );
     }
 }
+
+class Box extends React.Component {
+
+    static propTypes = {};
+
+    static defaultProps = {};
+
+    render() {
+        return (
+            <div className="rayr-toggle-box">
+                {this.props.children}
+            </div>
+        );
+    }
+}
+
+class Top extends React.Component {
+
+    render() {
+        return (
+            <div className="rayr-toggle-top">
+                {this.props.children}
+            </div>
+        );
+    }
+}
+
+RayrToggle.Box = Box;
+
+RayrToggle.Top = Top;
 
 export default RayrToggle;
