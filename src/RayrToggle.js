@@ -1,8 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-
 import rayrEmitter from './RayrEmitter';
+
+function getStyleFn(ele, attr) {
+    return window.getComputedStyle(ele, null)[attr];
+}
+
+class Box extends React.Component {
+
+    static propTypes = {};
+
+    static defaultProps = {};
+
+    render() {
+        return (
+            <div className="rayr-toggle-box">
+                {this.props.children}
+            </div>
+        );
+    }
+}
+
+class Top extends React.Component {
+
+    render() {
+        return (
+            <div className="rayr-toggle-top">
+                {this.props.children}
+            </div>
+        );
+    }
+}
 
 class RayrToggle extends React.Component {
 
@@ -33,12 +62,15 @@ class RayrToggle extends React.Component {
 
         this.oTop.addEventListener('click', (e) => {
             e.stopPropagation();
+
+            let _visiable = getStyleFn(this.oBox, 'display');
+
             rayrEmitter.emit('click.rayr.hide.all');
-            if (this.oBox.style.display === 'none') {
+
+            if (_visiable === 'none') {
                 this.oBox.style.display = 'block';
-            } else {
-                this.oBox.style.display = 'none';
             }
+
         }, false);
 
         this.oBox.addEventListener('click', (e) => {
@@ -61,32 +93,6 @@ class RayrToggle extends React.Component {
     render() {
         return (
             <div className="rayr-toggle" ref="rayrToggle">
-                {this.props.children}
-            </div>
-        );
-    }
-}
-
-class Box extends React.Component {
-
-    static propTypes = {};
-
-    static defaultProps = {};
-
-    render() {
-        return (
-            <div className="rayr-toggle-box">
-                {this.props.children}
-            </div>
-        );
-    }
-}
-
-class Top extends React.Component {
-
-    render() {
-        return (
-            <div className="rayr-toggle-top">
                 {this.props.children}
             </div>
         );

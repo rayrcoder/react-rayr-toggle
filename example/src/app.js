@@ -1,5 +1,7 @@
 import 'react-rayr-toggle/src/RayrToggle.scss';
 
+import './demo.scss';
+
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -7,7 +9,7 @@ import {RayrToggle} from 'react-rayr-toggle';
 
 function App() {
     return (
-        <div>
+        <div className="demo">
             <h1>组件初始化</h1>
             <RayrToggle>
                 <RayrToggle.Top>我是标题</RayrToggle.Top>
