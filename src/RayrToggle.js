@@ -8,11 +8,6 @@ function getStyleFn(ele, attr) {
 }
 
 class Box extends React.Component {
-
-    static propTypes = {};
-
-    static defaultProps = {};
-
     render() {
         return (
             <div className="rayr-toggle-box">
@@ -43,12 +38,11 @@ class RayrToggle extends React.Component {
         super()
         this.oTop = null;
         this.oBox = null;
+        this.oPar = null;
     }
 
     componentDidMount() {
-
         this.init();
-        this.onEvents();
     }
 
     init() {
@@ -57,33 +51,24 @@ class RayrToggle extends React.Component {
         this.oBox = this.refs.rayrToggle.children[1];
 
         document.addEventListener('click', () => {
+            console.log('document');
             rayrEmitter.emit('click.rayr.hide.all');
         }, false);
 
         this.oTop.addEventListener('click', (e) => {
             e.stopPropagation();
-
             let _visiable = getStyleFn(this.oBox, 'display');
-
             rayrEmitter.emit('click.rayr.hide.all');
-
             if (_visiable === 'none') {
                 this.oBox.style.display = 'block';
             }
-
         }, false);
 
         this.oBox.addEventListener('click', (e) => {
-            e.stopPropagation();
-            rayrEmitter.emit('click.rayr.hide.all');
+            if (e.target === this.oBox) {
+                rayrEmitter.emit('click.rayr.hide.all');
+            }
         }, false);
-
-        this.refs.rayrToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-        }, false);
-    }
-
-    onEvents() {
 
         rayrEmitter.on('click.rayr.hide.all', () => {
             this.oBox.style.display = 'none';
