@@ -30,9 +30,13 @@ class Top extends React.Component {
 
 class RayrToggle extends React.Component {
 
-    static propTypes = {};
+    static propTypes = {
+        className: PropTypes.string
+    };
 
-    static defaultProps = {};
+    static defaultProps = {
+        className: ''
+    };
 
     constructor() {
         super()
@@ -77,7 +81,7 @@ class RayrToggle extends React.Component {
 
     render() {
         return (
-            <div className="rayr-toggle" ref="rayrToggle">
+            <div {...this.props} className={`rayr-toggle ${this.props.className}`} ref="rayrToggle">
                 {this.props.children}
             </div>
         );
