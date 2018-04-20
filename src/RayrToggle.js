@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import {EventEmitter} from 'events';
 
 const rayrEmitter = new EventEmitter();
@@ -39,6 +38,10 @@ class RayrToggle extends React.Component {
     static defaultProps = {
         className: ''
     };
+
+    static Box = Box;
+
+    static Top = Top;
 
     constructor() {
         super()
@@ -89,9 +92,5 @@ class RayrToggle extends React.Component {
         );
     }
 }
-
-RayrToggle.Box = Box;
-
-RayrToggle.Top = Top;
 
 export default RayrToggle;
